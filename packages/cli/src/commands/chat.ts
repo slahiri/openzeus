@@ -6,12 +6,15 @@ import {
   getLastSession,
   getSessionByName,
 } from "../session/store.js";
+import type { PermissionMode } from "@openzeus/shared";
 
 interface ChatOptions {
   serverUrl: string;
   continue?: boolean;
   resume?: string;
   name?: string;
+  permissionMode: PermissionMode;
+  verbose?: boolean;
 }
 
 export async function chatCommand(opts: ChatOptions): Promise<void> {
@@ -40,6 +43,8 @@ export async function chatCommand(opts: ChatOptions): Promise<void> {
       threadId: session.threadId,
       sessionName: session.name,
       cwd: process.cwd(),
+      permissionMode: opts.permissionMode,
+      verbose: opts.verbose,
     }),
   );
 

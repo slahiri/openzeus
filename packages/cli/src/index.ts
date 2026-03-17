@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import { DEFAULT_SERVER_URL } from "@openzeus/shared";
+import type { PermissionMode } from "@openzeus/shared";
 import { printCommand } from "./commands/print.js";
 import { chatCommand } from "./commands/chat.js";
 
@@ -17,7 +18,15 @@ export function createProgram() {
     .option("-r, --resume <name>", "Resume a session by name")
     .option("-n, --name <name>", "Name the new session")
     .option("--server-url <url>", "Server URL", DEFAULT_SERVER_URL)
+    .option(
+      "--permission-mode <mode>",
+      "Permission mode: default, plan, full-auto",
+      "default",
+    )
+    .option("--verbose", "Show detailed tool call input/output")
     .action(async (opts) => {
+      const permissionMode = opts.permissionMode as PermissionMode;
+
       if (opts.print) {
         await printCommand(opts.print, opts.serverUrl);
       } else {
@@ -26,6 +35,8 @@ export function createProgram() {
           continue: opts.continue,
           resume: opts.resume,
           name: opts.name,
+          permissionMode,
+          verbose: opts.verbose,
         });
       }
     });
