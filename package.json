@@ -1,0 +1,17 @@
+{
+  "name": "openzeus",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @openzeus/server dev",
+    "build": "pnpm -r build",
+    "cli": "pnpm --filter @openzeus/cli start"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

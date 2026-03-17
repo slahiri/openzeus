@@ -1,0 +1,25 @@
+{
+  "name": "@openzeus/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "openzeus": "./dist/bin/openzeus.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/bin/openzeus.js"
+  },
+  "dependencies": {
+    "commander": "^13.0.0",
+    "marked": "^15.0.0",
+    "marked-terminal": "^7.0.0",
+    "chalk": "^5.4.0",
+    "@openzeus/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}
